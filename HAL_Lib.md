@@ -20,3 +20,15 @@
 - core_cm3.h：M系列芯片用到
 - mpu_armv7.h：内存保护
 
+## HAL库框架结构 STM32Cube/Drivers/STM32F1xx_HAL_Driver/
+
+- HAL 库文件夹结构
+  - Inc .h
+  - Src .c
+- HAL 库文件介绍
+  - hal.h：HAL库初始化、系统滴答、HAL 库延时等函数。
+  - hal_conf.h：HAL 库用户配置文件，用于裁剪 HAL 库、配置晶振参数等。
+  - hal_cortex.h：内核通用函数定义和声明，是对 core_cm3.h 文件中函数的再次封装。
+  - hal_xxx.h 和 hal_xxx_ex.h：某外设的驱动源码、扩展（特殊）功能的驱动源码。
+  - ll_ppp.h：LL库驱动源码。
+- API 函数和变量命名规则
