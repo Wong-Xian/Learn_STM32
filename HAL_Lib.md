@@ -32,3 +32,34 @@
   - hal_xxx.h 和 hal_xxx_ex.h：某外设的驱动源码、扩展（特殊）功能的驱动源码。
   - ll_ppp.h：LL库驱动源码。
 - API 函数和变量命名规则
+
+## 如何使用 HAL 库
+
+### 4.1 基于 CMSIS 应用程序文件描述
+
+CMSIS 文件夹下 Device 和 Include 文件夹下共11个文件。均为必须文件。
+
+设备驱动层，HAL 库和 LL 库。对于要用到的外设，均为必须文件。
+
+用户程序文件，main 文件，芯片初始化文件，HAL 库初始化文件。非必须。
+
+### 4.2 HAL 库的用户配置文件
+
+- 裁剪 HAL 库外设驱动源码
+
+在 stm32f1xx_hal_conf.h 文件中屏蔽对应的宏，使得对应外设文件不参与编译。
+
+- 设置外部高速晶振频率
+
+在 stm32f1xx_hal_conf.h 文件中修改 HSE_VALUE 的值。
+
+内部高速晶振是 HSI_VALUE。
+
+- 设置外部低速晶振频率
+
+在 stm32f1xx_hal_conf.h 文件中修改 LSE_VALUE 的值。
+
+
+### 4.3 stm32f1xx_hal.c 文件
+
+最关心： HAL_init 函数
