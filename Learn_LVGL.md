@@ -16,5 +16,3 @@
 5. 设置屏幕尺寸
 6. 在 disp_flush 函数中配置打点输出
 
-
-testtest
