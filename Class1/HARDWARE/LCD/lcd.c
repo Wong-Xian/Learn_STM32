@@ -2122,7 +2122,7 @@ void LCD_Fill(u16 sx,u16 sy,u16 ex,u16 ey,u16 color)
 
         for (j = 0; j < xlen; j++)
         {
-            LCD->LCD_RAM = color;   //设置光标位置
+            LCD->LCD_RAM = color;   //设置光标颜色
         }
     }
 }  
