@@ -19,9 +19,9 @@
 
 _m_tp_dev tp_dev=
 {
-	TP_Init,
-	TP_Scan,
-	TP_Adjust,
+	TP_Init,	// 函数指针指向初始化函数
+	TP_Scan,	// 函数指针指向扫描函数
+	TP_Adjust,	// 函数指针指向校准函数
 	0,
 	0, 
 	0,
@@ -112,6 +112,8 @@ u16 TP_Read_XOY(u8 xy)
 	temp=sum/(READ_TIMES-2*LOST_VAL);
 	return temp;   
 } 
+
+
 //读取x,y坐标
 //最小值不能少于100.
 //x,y:读取到的坐标值
@@ -126,6 +128,8 @@ u8 TP_Read_XY(u16 *x,u16 *y)
 	*y=ytemp;
 	return 1;//读数成功
 }
+
+
 //连续2次读取触摸屏IC,且这两次的偏差不能超过
 //ERR_RANGE,满足条件,则认为读数正确,否则读数错误.	   
 //该函数能大大提高准确度
@@ -136,19 +140,27 @@ u8 TP_Read_XY2(u16 *x,u16 *y)
 {
 	u16 x1,y1;
  	u16 x2,y2;
- 	u8 flag;    
+ 	u8 flag;   
+	
     flag=TP_Read_XY(&x1,&y1);   
-    if(flag==0)return(0);
+    if(flag==0)
+		return(0);
     flag=TP_Read_XY(&x2,&y2);	   
-    if(flag==0)return(0);   
+    if(flag==0)
+		return(0);
+	
     if(((x2<=x1&&x1<x2+ERR_RANGE)||(x1<=x2&&x2<x1+ERR_RANGE))//前后两次采样在+-50内
     &&((y2<=y1&&y1<y2+ERR_RANGE)||(y1<=y2&&y2<y1+ERR_RANGE)))
     {
         *x=(x1+x2)/2;
         *y=(y1+y2)/2;
         return 1;
-    }else return 0;	  
+    }
+	else
+		return 0;	  
 }  
+
+
 //////////////////////////////////////////////////////////////////////////////////		  
 //与LCD部分有关的函数  
 //画一个触摸点
@@ -186,11 +198,12 @@ u8 TP_Scan(u8 tp)
 {			   
 	if(PEN==0)//有按键按下
 	{
-		if(tp)TP_Read_XY2(&tp_dev.x[0],&tp_dev.y[0]);//读取物理坐标
+		if(tp)
+			TP_Read_XY2(&tp_dev.x[0],&tp_dev.y[0]);//读取物理坐标
 		else if(TP_Read_XY2(&tp_dev.x[0],&tp_dev.y[0]))//读取屏幕坐标
 		{
-	 		tp_dev.x[0]=tp_dev.xfac*tp_dev.x[0]+tp_dev.xoff;//将结果转换为屏幕坐标
-			tp_dev.y[0]=tp_dev.yfac*tp_dev.y[0]+tp_dev.yoff;  
+	 		tp_dev.x[0] = tp_dev.xfac * tp_dev.x[0] + tp_dev.xoff;//将结果转换为屏幕坐标
+			tp_dev.y[0] = tp_dev.yfac * tp_dev.y[0] + tp_dev.yoff;
 	 	} 
 		if((tp_dev.sta&TP_PRES_DOWN)==0)//之前没有被按下
 		{		 
@@ -198,8 +211,7 @@ u8 TP_Scan(u8 tp)
 			tp_dev.x[4]=tp_dev.x[0];//记录第一次按下时的坐标
 			tp_dev.y[4]=tp_dev.y[0];  	   			 
 		}			   
-	}else
-	{
+	}else{
 		if(tp_dev.sta&TP_PRES_DOWN)//之前是被按下的
 		{
 			tp_dev.sta&=~(1<<7);//标记按键松开	
@@ -211,7 +223,7 @@ u8 TP_Scan(u8 tp)
 			tp_dev.y[0]=0xffff;
 		}	    
 	}
-	return tp_dev.sta&TP_PRES_DOWN;//返回当前的触屏状态
+	return tp_dev.sta & TP_PRES_DOWN;//返回当前的触屏状态
 }	  
 //////////////////////////////////////////////////////////////////////////	 
 //保存在EEPROM里面的地址区间基址,占用14个字节(RANGE:SAVE_ADDR_BASE~SAVE_ADDR_BASE+13)
