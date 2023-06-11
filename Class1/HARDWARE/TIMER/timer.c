@@ -1,5 +1,6 @@
 #include "timer.h"
 #include "led.h"
+#include "lvgl.h"
 //////////////////////////////////////////////////////////////////////////////////	 
 //本程序只供学习使用，未经作者许可，不得用于其它任何用途
 //ALIENTEK STM32F103开发板
@@ -33,7 +34,8 @@ void TIM3_Init(u16 arr,u16 psc)
     HAL_TIM_Base_Start_IT(&TIM3_Handler); //使能定时器3和定时器3更新中断：TIM_IT_UPDATE   
 }
 
-//定时器底册驱动，开启时钟，设置中断优先级
+
+//定时器底层驱动，开启时钟，设置中断优先级
 //此函数会被HAL_TIM_Base_Init()函数调用
 void HAL_TIM_Base_MspInit(TIM_HandleTypeDef *htim)
 {
@@ -56,6 +58,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
     if(htim==(&TIM3_Handler))
     {
-        LED1=!LED1;        //LED1反转
+        lv_tick_inc(1);
     }
 }
