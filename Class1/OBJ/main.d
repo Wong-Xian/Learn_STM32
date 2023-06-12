@@ -194,3 +194,6 @@
 ..\obj\main.o: ..\Middlewares\LVGL\GUI\lvgl\src/extra/libs/ffmpeg/lv_ffmpeg.h
 ..\obj\main.o: ..\Middlewares\LVGL\GUI\lvgl\examples\porting\lv_port_disp_template.h
 ..\obj\main.o: ..\Middlewares\LVGL\GUI\lvgl\examples\porting\lv_port_indev_template.h
+..\obj\main.o: ..\Middlewares\LVGL\GUI_APP\demos\stress\lv_demo_stress.h
+..\obj\main.o: ..\Middlewares\LVGL\GUI_APP\demos\stress\../lv_demos.h
+..\obj\main.o: ..\Middlewares\LVGL\GUI_APP\demos\stress\../stress/lv_demo_stress.h
