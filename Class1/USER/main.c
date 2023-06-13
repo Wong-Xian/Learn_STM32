@@ -23,17 +23,21 @@ int main(void)
 	uart_init(115200);					//初始化串口
 	LED_Init();							//初始化LED	
 	KEY_Init();							//初始化按键
+	LCD_Init();							// 初始化屏幕
+	tp_dev.init();						// 初始化触摸屏
 
 	TIM3_Init(1000 - 1, 72 - 1);	// 初始化定时器中断
 	lv_init();							// lvgl初始化
 	lv_port_disp_init();				// 显示初始化
 	lv_port_indev_init();				// 触摸初始化
 	
-//	lv_obj_t* switch_obj = lv_switch_create(lv_scr_act());
-//	lv_obj_set_size(switch_obj, 120, 60);
-//	lv_obj_align(switch_obj, LV_ALIGN_CENTER, 0, 0);
+	lv_obj_t* switch_obj = lv_switch_create(lv_scr_act());
+	lv_obj_set_size(switch_obj, 120, 60);
+	lv_obj_align(switch_obj, LV_ALIGN_CENTER, 0, 0);
+	
+//	LCD_Fill(0, 0, 100, 100, RED);
 
-	lv_demo_stress();
+//	lv_demo_stress();
 	
 	while (1)
 	{

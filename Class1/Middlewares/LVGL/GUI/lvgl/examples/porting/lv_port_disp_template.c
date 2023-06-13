@@ -50,7 +50,7 @@ void lv_port_disp_init(void)
     /*-------------------------
      * Initialize your display
      * -----------------------*/
-    disp_init();
+//    disp_init();
 
     /*-----------------------------
      * Create a buffer for drawing
