@@ -13,6 +13,9 @@
 #include "lv_port_indev_template.h"
 #include "lv_port_disp_template.h"
 
+//#include "lv_demo_stress.h"
+//#include "lv_demo_music.h"
+
 int main(void)
 {
     HAL_Init();                    	 	//初始化HAL库    
@@ -29,9 +32,21 @@ int main(void)
 	lv_port_disp_init();				// 初始化显示屏
 	lv_port_indev_init();				// 初始化触摸屏
 	
-	lv_obj_t* switch_obj = lv_switch_create(lv_scr_act());
-	lv_obj_set_size(switch_obj, 120, 60);
-	lv_obj_align(switch_obj, LV_ALIGN_CENTER, 0, 0);
+	lv_obj_t* switch_obj1 = lv_switch_create(lv_scr_act());
+	lv_obj_set_size(switch_obj1, 120, 60);
+	lv_obj_align(switch_obj1, LV_ALIGN_TOP_LEFT, 10, 10);
+	
+	lv_obj_t* switch_obj2 = lv_switch_create(lv_scr_act());
+	lv_obj_set_size(switch_obj2, 120, 60);
+	lv_obj_align(switch_obj2, LV_ALIGN_TOP_MID, 0, 10);
+	
+	lv_obj_t* switch_obj3 = lv_switch_create(lv_scr_act());
+	lv_obj_set_size(switch_obj3, 120, 60);
+	lv_obj_align(switch_obj3, LV_ALIGN_TOP_LEFT, 10, 80);
+
+	
+//	lv_demo_stress();
+//	lv_demo_music();
 	
 	while (1)
 	{
