@@ -1,16 +1,3 @@
-/**
- * @file lv_conf.h
- * Configuration file for v8.2.0
- */
-
-/*
- * Copy this file as `lv_conf.h`
- * 1. simply next to the `lvgl` folder
- * 2. or any other places and
- *    - define `LV_CONF_INCLUDE_SIMPLE`
- *    - add the path as include path
- */
-
 /* clang-format off */
 #if 1 /*Set it to "1" to enable content*/
 
@@ -20,7 +7,7 @@
 #include <stdint.h>
 
 /*====================
-   COLOR SETTINGS
+   颜色配置
  *====================*/
 
 /*Color depth: 1 (1 byte per pixel), 8 (RGB332), 16 (RGB565), 32 (ARGB8888)*/
@@ -39,17 +26,17 @@
 #define LV_COLOR_MIX_ROUND_OFS (LV_COLOR_DEPTH == 32 ? 0: 128)
 
 /*Images pixels with this color will not be drawn if they are chroma keyed)*/
-#define LV_COLOR_CHROMA_KEY lv_color_hex(0x00ff00)         /*pure green*/
+#define LV_COLOR_CHROMA_KEY lv_color_hex(0x00ff00)         /*pure green抠掉绿幕*/
 
 /*=========================
-   MEMORY SETTINGS
+   内存设置
  *=========================*/
 
-/*1: use custom malloc/free, 0: use the built-in `lv_mem_alloc()` and `lv_mem_free()`*/
-#define LV_MEM_CUSTOM 0
+#define LV_MEM_CUSTOM 0		// 为1，用自研内存管理算法；为0，用lvgl自带算法
+
 #if LV_MEM_CUSTOM == 0
-    /*Size of the memory available for `lv_mem_alloc()` in bytes (>= 2kB)*/
-    #define LV_MEM_SIZE (20U * 1024U)          /*[bytes]*/
+    /* lvgl自带内存管理算法，调用时管理的内存大小 (>= 2kB) 单位字节*/
+    #define LV_MEM_SIZE (20U * 1024U)
 
     /*Set an address for the memory pool instead of allocating it as a normal array. Can be in external SRAM too.*/
     #define LV_MEM_ADR 0     /*0: unused*/
@@ -74,29 +61,26 @@
 #define LV_MEMCPY_MEMSET_STD 0
 
 /*====================
-   HAL SETTINGS
+   HAL 设置
  *====================*/
 
-/*Default display refresh period. LVG will redraw changed areas with this period time*/
+/* 默认显示刷新周期 */
 #define LV_DISP_DEF_REFR_PERIOD 3      /*[ms]*/
 
-/*Input device read period in milliseconds*/
+/* 输入设备读取周期 */
 #define LV_INDEV_DEF_READ_PERIOD 3     /*[ms]*/
 
-/*Use a custom tick source that tells the elapsed time in milliseconds.
- *It removes the need to manually update the tick with `lv_tick_inc()`)*/
+/* 使用定制时钟源上报流逝的毫秒数，从而免去手动调用lv_tick_inc()函数更新时钟的麻烦 */
 #define LV_TICK_CUSTOM 0
 #if LV_TICK_CUSTOM
     #define LV_TICK_CUSTOM_INCLUDE "Arduino.h"         /*Header for the system time function*/
     #define LV_TICK_CUSTOM_SYS_TIME_EXPR (millis())    /*Expression evaluating to current system time in ms*/
 #endif   /*LV_TICK_CUSTOM*/
 
-/*Default Dot Per Inch. Used to initialize default sizes such as widgets sized, style paddings.
- *(Not so important, you can adjust it to modify default sizes and spaces)*/
-#define LV_DPI_DEF 130     /*[px/inch]*/
+#define LV_DPI_DEF 130	// 每英寸像素量 [px/inch]
 
 /*=======================
- * FEATURE CONFIGURATION
+ * 特征选项
  *=======================*/
 
 /*-------------
@@ -153,25 +137,23 @@
  *Only used if software rotation is enabled in the display driver.*/
 #define LV_DISP_ROT_MAX_BUF (10*1024)
 
-/*-------------
+/*------------
  * GPU
  *-----------*/
 
-/*Use STM32's DMA2D (aka Chrom Art) GPU*/
-#define LV_USE_GPU_STM32_DMA2D 0
+#define LV_USE_GPU_STM32_DMA2D 0	// 0，关闭该功能；1，开启该功能
 #if LV_USE_GPU_STM32_DMA2D
-    /*Must be defined to include path of CMSIS header of target processor
-    e.g. "stm32f769xx.h" or "stm32f429xx.h"*/
+    /* 必须定义包括目标处理器的CMSIS头的路径，如"stm32f103xx.h" */
     #define LV_GPU_DMA2D_CMSIS_INCLUDE
 #endif
 
-/*Use NXP's PXP GPU iMX RTxxx platforms*/
+/* 使用 NXP's PXP GPU iMX RTxxx 平台 */
 #define LV_USE_GPU_NXP_PXP 0
 #if LV_USE_GPU_NXP_PXP
-    /*1: Add default bare metal and FreeRTOS interrupt handling routines for PXP (lv_gpu_nxp_pxp_osa.c)
-    *   and call lv_gpu_nxp_pxp_init() automatically during lv_init(). Note that symbol SDK_OS_FREE_RTOS
-    *   has to be defined in order to use FreeRTOS OSA, otherwise bare-metal implementation is selected.
-    *0: lv_gpu_nxp_pxp_init() has to be called manually before lv_init()
+    /*1: 为 PXP (lv_gpu_nxp_pxp_osa.c) 添加默认的裸机或FreeRTOS中断处理过程
+    *   并在 lv_init() 过程中自动调用 lv_gpu_nxp_pxp_init() 函数
+	*   注意：要使用FreeRTOS OSA，必须要定义 SDK_OS_FREE_RTOS，否则默认启动裸机
+	* 0：需在 lv_init() 之前手动调用 lv_gpu_nxp_pxp_init()
     */
     #define LV_USE_GPU_NXP_PXP_AUTO_INIT 0
 #endif
@@ -190,25 +172,25 @@
 #endif
 
 /*-------------
- * Logging
+ * 日志
  *-----------*/
 
-/*Enable the log module*/
-#define LV_USE_LOG 0
+#define LV_USE_LOG 0		// 配置是否启用日志：0，不启用；1，启用。
+
 #if LV_USE_LOG
 
-    /*How important log should be added:
-    *LV_LOG_LEVEL_TRACE       A lot of logs to give detailed information
-    *LV_LOG_LEVEL_INFO        Log important events
-    *LV_LOG_LEVEL_WARN        Log if something unwanted happened but didn't cause a problem
-    *LV_LOG_LEVEL_ERROR       Only critical issue, when the system may fail
-    *LV_LOG_LEVEL_USER        Only logs added by the user
-    *LV_LOG_LEVEL_NONE        Do not log anything*/
-    #define LV_LOG_LEVEL LV_LOG_LEVEL_WARN
+    /* 记录日志的重要程度
+    *LV_LOG_LEVEL_TRACE       记录详细信息，生成大量日志
+    *LV_LOG_LEVEL_INFO        记录重要事件
+    *LV_LOG_LEVEL_WARN        记录不会产生问题，但不在设想中的事件
+    *LV_LOG_LEVEL_ERROR       记录可能导致系统崩溃的重要问题
+    *LV_LOG_LEVEL_USER        只记录用户添加的日志
+    *LV_LOG_LEVEL_NONE        不做任何记录*/
+    #define LV_LOG_LEVEL LV_LOG_LEVEL_INFO
 
-    /*1: Print the log with 'printf';
-    *0: User need to register a callback with `lv_log_register_print_cb()`*/
-    #define LV_LOG_PRINTF 0
+    /*1: 打印日志 with 'printf';
+     *0: User need to register a callback with `lv_log_register_print_cb()`*/
+    #define LV_LOG_PRINTF 1
 
     /*Enable/disable LV_LOG_TRACE in modules that produces a huge number of logs*/
     #define LV_LOG_TRACE_MEM        1

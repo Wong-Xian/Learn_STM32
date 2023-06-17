@@ -102,7 +102,7 @@ static void disp_init(void)
 {
     /*You code here*/
 	LCD_Init();
-	LCD_Display_Dir(1);
+	LCD_Display_Dir(0);
 }
 
 /*Flush the content of the internal buffer the specific area on the display
