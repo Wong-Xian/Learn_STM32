@@ -205,16 +205,16 @@
 #endif  /*LV_USE_LOG*/
 
 /*-------------
- * Asserts
+ * 维护
  *-----------*/
 
 /*Enable asserts if an operation is failed or an invalid data is found.
  *If LV_USE_LOG is enabled an error message will be printed on failure*/
-#define LV_USE_ASSERT_NULL          1   /*Check if the parameter is NULL. (Very fast, recommended)*/
-#define LV_USE_ASSERT_MALLOC        1   /*Checks is the memory is successfully allocated or no. (Very fast, recommended)*/
-#define LV_USE_ASSERT_STYLE         0   /*Check if the styles are properly initialized. (Very fast, recommended)*/
-#define LV_USE_ASSERT_MEM_INTEGRITY 0   /*Check the integrity of `lv_mem` after critical operations. (Slow)*/
-#define LV_USE_ASSERT_OBJ           0   /*Check the object's type and existence (e.g. not deleted). (Slow)*/
+#define LV_USE_ASSERT_NULL          1   /* 检查参数是否为 NULL. (Very fast, recommended)*/
+#define LV_USE_ASSERT_MALLOC        1   /* 检查内存是否分配成功 (Very fast, recommended)*/
+#define LV_USE_ASSERT_STYLE         0   /* 检查样式是否正确初始化(Very fast, recommended)*/
+#define LV_USE_ASSERT_MEM_INTEGRITY 0   /* 关键操作完成后检查 lv_mem 的完整性 (Slow)*/
+#define LV_USE_ASSERT_OBJ           0   /* 检查对象类型以及是否存在 (比如，未被删除). (Slow)*/
 
 /*Add a custom handler when assert happens e.g. to restart the MCU*/
 #define LV_ASSERT_HANDLER_INCLUDE <stdint.h>
