@@ -221,17 +221,17 @@
 #define LV_ASSERT_HANDLER while(1);   /*Halt by default*/
 
 /*-------------
- * Others
+ * 其他
  *-----------*/
 
-/*1: Show CPU usage and FPS count*/
+/* 置1: 显示CPU使用率和帧率 */
 #define LV_USE_PERF_MONITOR 0
 #if LV_USE_PERF_MONITOR
     #define LV_USE_PERF_MONITOR_POS LV_ALIGN_BOTTOM_RIGHT
 #endif
 
-/*1: Show the used memory and the memory fragmentation
- * Requires LV_MEM_CUSTOM = 0*/
+/* 置1: 显示已使用的内存和内存碎片
+ * 使用lvgl自带的内存管理算法时可用 */
 #define LV_USE_MEM_MONITOR 0
 #if LV_USE_MEM_MONITOR
     #define LV_USE_MEM_MONITOR_POS LV_ALIGN_BOTTOM_LEFT
@@ -260,19 +260,19 @@
 #endif /*LV_ENABLE_GC*/
 
 /*=====================
- *  COMPILER SETTINGS
+ *  编译器设置
  *====================*/
 
-/*For big endian systems set to 1*/
+/* 置1：大端序系统 */
 #define LV_BIG_ENDIAN_SYSTEM 0
 
-/*Define a custom attribute to `lv_tick_inc` function*/
+/* 为 `lv_tick_inc` 函数定义一个自定义属性 */
 #define LV_ATTRIBUTE_TICK_INC
 
-/*Define a custom attribute to `lv_timer_handler` function*/
+/* 为 `lv_timer_handler` 函数定义一个自定义属性*/
 #define LV_ATTRIBUTE_TIMER_HANDLER
 
-/*Define a custom attribute to `lv_disp_flush_ready` function*/
+/* 为 `lv_disp_flush_ready` 函数定义一个自定义属性*/
 #define LV_ATTRIBUTE_FLUSH_READY
 
 /*Required alignment size for buffers*/
@@ -302,7 +302,7 @@
 #define LV_USE_LARGE_COORD 0
 
 /*==================
- *   FONT USAGE
+ *   字库设置
  *===================*/
 
 /*Montserrat fonts with ASCII range and some symbols using bpp = 4
@@ -329,17 +329,17 @@
 #define LV_FONT_MONTSERRAT_46 0
 #define LV_FONT_MONTSERRAT_48 0
 
-/*Demonstrate special features*/
+/* 特性展示 */
 #define LV_FONT_MONTSERRAT_12_SUBPX      0
 #define LV_FONT_MONTSERRAT_28_COMPRESSED 0  /*bpp = 3*/
 #define LV_FONT_DEJAVU_16_PERSIAN_HEBREW 0  /*Hebrew, Arabic, Persian letters and all their forms*/
 #define LV_FONT_SIMSUN_16_CJK            0  /*1000 most common CJK radicals*/
 
-/*Pixel perfect monospace fonts*/
+/* 像素完美的等宽字体 */
 #define LV_FONT_UNSCII_8  0
 #define LV_FONT_UNSCII_16 0
 
-/*Optionally declare custom fonts here.
+/* 声明自定义字体（可选）
  *You can use these fonts as default font too and they will be available globally.
  *E.g. #define LV_FONT_CUSTOM_DECLARE   LV_FONT_DECLARE(my_font_1) LV_FONT_DECLARE(my_font_2)*/
 #define LV_FONT_CUSTOM_DECLARE
@@ -409,28 +409,28 @@
 #define LV_USE_ARABIC_PERSIAN_CHARS 0
 
 /*==================
- *  WIDGET USAGE
+ *  控件配置
  *================*/
 
 /*Documentation of the widgets: https://docs.lvgl.io/latest/en/html/widgets/index.html*/
 
-#define LV_USE_ARC        1
+#define LV_USE_ARC        1     // 圆弧 进度条
 
-#define LV_USE_ANIMIMG    1
+#define LV_USE_ANIMIMG    1     // 动态图片animation image
 
-#define LV_USE_BAR        1
+#define LV_USE_BAR        1     // 进度条 长条状
 
-#define LV_USE_BTN        1
+#define LV_USE_BTN        1     // 按钮Button
 
-#define LV_USE_BTNMATRIX  1
+#define LV_USE_BTNMATRIX  1     // 按钮矩阵 例如数字键盘
 
-#define LV_USE_CANVAS     1
+#define LV_USE_CANVAS     1     // 画布
 
-#define LV_USE_CHECKBOX   1
+#define LV_USE_CHECKBOX   1     // 打钩框
 
-#define LV_USE_DROPDOWN   1   /*Requires: lv_label*/
+#define LV_USE_DROPDOWN   1     // 可下拉的选择框 需要 lv_label
 
-#define LV_USE_IMG        1   /*Requires: lv_label*/
+#define LV_USE_IMG        1     // 图片 需要 lv_label
 
 #define LV_USE_LABEL      1
 #if LV_USE_LABEL
@@ -457,13 +457,13 @@
 #define LV_USE_TABLE      1
 
 /*==================
- * EXTRA COMPONENTS
+ * 其他组件
  *==================*/
 
 /*-----------
  * Widgets
  *----------*/
-#define LV_USE_CALENDAR   1
+#define LV_USE_CALENDAR   1     // 日历
 #if LV_USE_CALENDAR
     #define LV_CALENDAR_WEEK_STARTS_MONDAY 0
     #if LV_CALENDAR_WEEK_STARTS_MONDAY
@@ -477,33 +477,33 @@
     #define LV_USE_CALENDAR_HEADER_DROPDOWN 1
 #endif  /*LV_USE_CALENDAR*/
 
-#define LV_USE_CHART      1
+#define LV_USE_CHART      1     // 折线图
 
-#define LV_USE_COLORWHEEL 1
+#define LV_USE_COLORWHEEL 1     // 取色器
 
-#define LV_USE_IMGBTN     1
+#define LV_USE_IMGBTN     1     // 图象按钮
 
-#define LV_USE_KEYBOARD   1
+#define LV_USE_KEYBOARD   1     // 键盘
 
-#define LV_USE_LED        1
+#define LV_USE_LED        1     // 模拟LED
 
-#define LV_USE_LIST       1
+#define LV_USE_LIST       1     // 选项列表
 
-#define LV_USE_MENU       1
+#define LV_USE_MENU       1     // 多级菜单
 
-#define LV_USE_METER      1
+#define LV_USE_METER      1     // 计量表（速度计、里程计等数据可视化）
 
-#define LV_USE_MSGBOX     1
+#define LV_USE_MSGBOX     1     // 信息弹窗
 
-#define LV_USE_SPINBOX    1
+#define LV_USE_SPINBOX    1     // 微调框
 
-#define LV_USE_SPINNER    1
+#define LV_USE_SPINNER    1     // “正在加载”图标
 
-#define LV_USE_TABVIEW    1
+#define LV_USE_TABVIEW    1     // 标签栏
 
-#define LV_USE_TILEVIEW   1
+#define LV_USE_TILEVIEW   1     // 滚动条
 
-#define LV_USE_WIN        1
+#define LV_USE_WIN        1     // 窗口
 
 #define LV_USE_SPAN       1
 #if LV_USE_SPAN
