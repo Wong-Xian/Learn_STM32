@@ -53,7 +53,9 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR szCmdLi
     LV_LOG_USER("LVGL initialization completed!");
 
     /*Run the demo*/
-    lv_demo_widgets();
+//    lv_demo_widgets();
+
+    my_gui();
 
     while(!lv_win32_quit_signal) {
         /* Periodically call the lv_task handler.
