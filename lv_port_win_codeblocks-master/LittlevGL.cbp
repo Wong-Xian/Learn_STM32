@@ -1626,6 +1626,10 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="my_gui.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="my_gui.h" />
 		<Extensions>
 			<code_completion>
 				<search_path add="E:\Projects\LittlevGL\" />
