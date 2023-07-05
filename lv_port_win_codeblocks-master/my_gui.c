@@ -3,7 +3,7 @@
 
 void my_gui(void)
 {
-    L_arc();
+    BasicObject();
 }
 
 void L_arc(void)
@@ -100,4 +100,20 @@ void L_arc(void)
 
     lv_obj_remove_style(arc8, NULL, LV_PART_KNOB);
     lv_obj_clear_flag(arc8, LV_OBJ_FLAG_CLICKABLE);
+}
+
+
+/* 基础对象的使用 */
+void BasicObject(void)
+{
+    lv_obj_t* obj1 = lv_obj_create(lv_scr_act());   // 创建基础对象
+    /* 运行结果，基础部件就是一个矩形框 */
+
+    lv_obj_set_size(obj1, 700, 400);    // 调整基础对象的大小
+
+    lv_obj_t* switch1 = lv_switch_create(obj1); // 以obj1为父对象，创建一个开关
+    lv_obj_set_size(switch1, 120, 60);      // 设置开关大小
+    lv_obj_set_pos(switch1, 100, 100);      // 设置开关位置
+
+    lv_obj_set_pos(obj1, 20, 20);       // 调整父对象的位置
 }

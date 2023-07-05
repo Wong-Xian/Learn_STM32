@@ -4,5 +4,6 @@
 void my_gui(void);
 
 void L_arc(void);
+void BasicObject(void);
 
 #endif // _MY_GUI_H
