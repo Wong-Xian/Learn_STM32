@@ -72,6 +72,7 @@ void L_arc(void)
     lv_arc_set_bg_angles(arc6, 0, 240);
     lv_arc_set_value(arc6, 50);
 
+    lv_arc_set_mode(arc6, LV_ARC_MODE_REVERSE);// 滑块在中间，可向两边滑动
     lv_obj_set_pos(arc6, 560, 10);
 
 
@@ -83,6 +84,7 @@ void L_arc(void)
     lv_arc_set_bg_angles(arc7, 0, 260);
     lv_arc_set_value(arc7, 50);
 
+    lv_arc_set_mode(arc7, LV_ARC_MODE_SYMMETRICAL);// 滑块在最右边，可往左滑动
     lv_obj_set_pos(arc7, 670, 10);
 
 
